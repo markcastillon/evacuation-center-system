@@ -1,0 +1,6 @@
+center_id,name,location,capacity,occupancy,status_override,contact_person,contact_number,last_updated
+EC-01,Pangabugan Elementary School,"Purok 3, Brgy. Pangabugan",250,142,,Center Coordinator A,,2026-10-26 08:30
+EC-02,Barangay Covered Court,"Purok 1, beside Barangay Hall",180,161,,Center Coordinator B,,2026-10-26 08:15
+EC-03,Barangay Multi-Purpose Hall,"Purok 1, Brgy. Pangabugan",120,120,,Center Coordinator C,,2026-10-26 07:50
+EC-04,Day Care Center,"Purok 5, Brgy. Pangabugan",60,18,,Center Coordinator D,,2026-10-26 08:05
+EC-05,Chapel Annex,"Purok 6, Brgy. Pangabugan",80,0,Closed,Center Coordinator E,,2026-10-25 18:00

@@ -1,4 +1,4 @@
-# Community Evacuation Center Management System: Landing Page
+# Community Evacuation Center Management System: Landing Page 
 
 CSC 106 project by **InnovaTech** (Caraga State University, CCIS).
 The website shows live evacuation center status and announcements from a **Google Sheet**,

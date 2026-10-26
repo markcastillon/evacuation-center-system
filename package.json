@@ -1,0 +1,13 @@
+{
+  "name": "evacuation-center-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Community Evacuation Center Management System landing page (CSC 106, InnovaTech)",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

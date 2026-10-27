@@ -28,6 +28,7 @@
         <ul id="nav-links" class="nav-links">
           <li><a href="#centers">Centers</a></li>
           <li><a href="#announcements">Announcements</a></li>
+          <li><a href="#policies">Policies</a></li>
           <li><a href="#features">Features</a></li>
           <li><a href="#volunteer">Volunteer</a></li>
           <li><a href="#team">Team</a></li>
@@ -113,6 +114,12 @@
           <div class="center-card skeleton"></div>
         </div>
         <p class="empty" id="center-empty" hidden>No centers match your search.</p>
+
+        <div class="priority" id="priority" hidden>
+          <h3>Priority groups currently sheltered</h3>
+          <ul class="priority-list" id="priority-list"></ul>
+          <p class="priority-note">Counts only. Names and health information are kept private under the Data Privacy Act of 2012 (RA 10173).</p>
+        </div>
       </div>
     </section>
 
@@ -132,8 +139,23 @@
       </div>
     </section>
 
+    <!-- POLICIES -->
+    <section class="section" id="policies" hidden>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Barangay policies</p>
+            <h2>Ordinance, policies &amp; center rules</h2>
+            <p class="section-lead">The rules every evacuation center in Barangay Pangabugan follows, and the laws they are based on.</p>
+          </div>
+        </div>
+        <div id="ordinance-list"></div>
+        <div class="policy-grid" id="policy-list"></div>
+      </div>
+    </section>
+
     <!-- PROBLEM / SOLUTION -->
-    <section class="section">
+    <section class="section section-line">
       <div class="container">
         <div class="section-head center">
           <div>

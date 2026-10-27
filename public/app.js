@@ -118,12 +118,45 @@
     select.value = current;
   }
 
+  function policyCard(p, featured) {
+    // House rules read better as a checklist, one sentence per item.
+    const sentences = p.summary.split(/(?<=\.)\s+/).filter(Boolean);
+    const body = p.type.toLowerCase() === "rule" && sentences.length > 1
+      ? `<ul>${sentences.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ul>`
+      : `<p>${escapeHtml(p.summary)}</p>`;
+    return `
+      <article class="${featured ? "ordinance" : "policy"}">
+        <div class="tag-row">
+          <span class="tag tag-${escapeHtml(p.type.toLowerCase())}">${escapeHtml(p.type)}</span>
+          ${p.isDraft ? `<span class="tag tag-draft">Draft</span>` : ""}
+        </div>
+        <h3>${escapeHtml(p.title)}</h3>
+        ${body}
+        ${p.legalBasis ? `<p class="legal"><strong>Legal basis:</strong> ${escapeHtml(p.legalBasis)}</p>` : ""}
+      </article>`;
+  }
+
+  function renderPolicies(policies = []) {
+    const isOrdinance = (p) => p.type.toLowerCase() === "ordinance";
+    $("#policies").hidden = policies.length === 0;
+    $("#ordinance-list").innerHTML = policies.filter(isOrdinance).map((p) => policyCard(p, true)).join("");
+    $("#policy-list").innerHTML = policies.filter((p) => !isOrdinance(p)).map((p) => policyCard(p, false)).join("");
+  }
+
+  function renderPriority(groups = []) {
+    $("#priority").hidden = groups.length === 0;
+    $("#priority-list").innerHTML = groups.map((g) => `
+      <li><strong>${fmt(g.count)}</strong><span>${escapeHtml(g.group)}</span></li>`).join("");
+  }
+
   function render(data, opts) {
     state.centers = data.centers;
     renderSummary(data, opts);
     renderCenters();
     renderAnnouncements(data.announcements);
     renderCenterOptions(data.centers);
+    renderPolicies(data.policies);
+    renderPriority(data.vulnerable);
   }
 
   // ---------- Data loading ----------

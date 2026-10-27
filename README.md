@@ -1,6 +1,6 @@
-# Community Evacuation Center Management System: Landing Page 
+# Community Evacuation Center Management System: Landing Page
 
-CSC 106 project by **InnovaTech** (Caraga State University, CCIS). 
+CSC 106 project by **InnovaTech** (Caraga State University, CCIS).
 The website shows live evacuation center status and announcements from a **Google Sheet**,
 and saves volunteer sign-ups back into it. It is hosted for free on **Vercel**.
 
@@ -42,21 +42,21 @@ Your site is now live, showing **sample data**. The next steps connect your real
 
 ## Step 3: Create the Google Sheet
 
-1. Go to https://sheets.new to create a blank sheet.
-2. Make 4 tabs, named exactly: `Centers`, `Announcements`, `Volunteers`, `Evacuees`.
-3. In each tab, go to **File > Import > Upload**, choose the matching file from the `sheet-template`
-   folder, and select **Replace current sheet**.
+Go to https://sheets.new to create a blank sheet. Leave it empty; the script in Step 4 builds the tabs for you.
 
 ## Step 4: Add the script to the sheet
 
 1. In the Google Sheet, click **Extensions > Apps Script**.
 2. Delete the code already there, then paste in everything from `google-apps-script/Code.gs`. Click **Save**.
-3. Click **Deploy > New deployment**. Click the gear icon and choose **Web app**.
-4. Set **Execute as: Me** and **Who has access: Anyone**. Click **Deploy**.
-5. Google will ask for permission: click **Authorize access** and choose your account.
+3. In the toolbar, pick **setupSheet** from the function dropdown and click **Run**.
+   Google will ask for permission: click **Review permissions** and choose your account.
    If you see "Google hasn't verified this app", click **Advanced > Go to (project name)**,
    then **Allow**. This is normal for your own scripts.
-6. Copy the **Web app URL** (it ends in `/exec`).
+4. Go back to the sheet. You should now see 4 tabs at the bottom: `Centers`, `Announcements`,
+   `Volunteers`, `Evacuees`. You can delete the empty `Sheet1` tab (right-click it > **Delete**).
+5. Back in Apps Script, click **Deploy > New deployment**. Click the gear icon and choose **Web app**.
+6. Set **Execute as: Me** and **Who has access: Anyone**. Click **Deploy**.
+7. Copy the **Web app URL** (it ends in `/exec`).
 
 ## Step 5: Connect the sheet to Vercel
 
@@ -87,6 +87,32 @@ Edit the Google Sheet. The website picks up changes within about a minute.
 ```
 =COUNTIFS(Evacuees!G:G, A2, Evacuees!I:I, "Sheltered")
 ```
+
+## Draft data, policies, and printable forms
+
+Running `setupSheet` also creates these tabs, filled with **DRAFT sample data** for testing.
+They are private: the website never reads them.
+
+| Tab | What it holds |
+|---|---|
+| `Families` | One row per family (head of family, purok, center, house damage) |
+| `Evacuees` | Each family member, with relationship and vulnerable group |
+| `HealthRecords` | Basic health checks: BP, temperature, complaints, allergies, medicine, referrals |
+| `Supplies` | Supplies per center; `remaining` is calculated automatically |
+| `Distributions` | Relief goods released to each family |
+| `Policies` | DRAFT barangay ordinance, policies, and evacuation center rules |
+
+After running `setupSheet`, reload the Google Sheet. A **CECMS** menu appears. It generates a
+Google Doc that you can print or download as PDF:
+
+- **Family registration form:** click a family's row in `Families` first
+- **Health record:** click an evacuee's row in `Evacuees` or `HealthRecords` first
+- **Daily evacuation center report:** all centers, vulnerable groups, supplies, and health summary
+- **Relief distribution list:** asks for a center ID, with a signature column
+- **Link center occupancy to Evacuees tab:** makes the website's occupancy count registered evacuees
+
+When the barangay's real forms and policies arrive, delete the sample rows and type in the
+real data. The tab headings stay the same.
 
 ## If you change the script later
 

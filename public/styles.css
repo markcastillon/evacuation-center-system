@@ -290,6 +290,49 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .announcement h3 { font-size: 17px; margin-bottom: 6px; }
 .announcement p { color: var(--muted); }
 
+/* ---------- Priority groups ---------- */
+.priority { margin-top: 40px; }
+.priority h3 { font-size: 18px; margin-bottom: 14px; }
+.priority-list { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.priority-list li {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+}
+.priority-list strong { display: block; font-size: 28px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.priority-list span { font-size: 13px; color: var(--muted); font-weight: 600; }
+.priority-note { margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+/* ---------- Policies ---------- */
+.ordinance {
+  background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--accent);
+  border-radius: var(--radius); padding: 24px; margin-bottom: 16px; box-shadow: var(--shadow);
+}
+.ordinance h3 { font-size: 20px; margin-bottom: 8px; }
+.ordinance p { color: var(--muted); max-width: 75ch; }
+.policy-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.policy {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px; display: flex; flex-direction: column;
+}
+.policy h3 { font-size: 17px; margin-bottom: 6px; }
+.policy p, .policy li { color: var(--muted); font-size: 15px; }
+.policy ul { list-style: disc; padding-left: 18px; display: grid; gap: 4px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.tag {
+  font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 3px 8px; border-radius: 6px; background: var(--tint); color: var(--link);
+}
+.tag-ordinance, .tag-draft { background: var(--accent-soft); color: var(--accent); }
+.tag-rule { color: var(--open); background: color-mix(in srgb, var(--open) 12%, transparent); }
+.policy > p:not(.legal), .policy > ul { margin-bottom: 14px; }
+.legal {
+  margin-top: 14px; padding-top: 12px; font-size: 13px !important;
+  border-top: 1px dashed var(--line);
+}
+.policy .legal { margin-top: auto; }
+.ordinance .legal { max-width: none; }
+.legal strong { color: var(--ink); }
+.section-line { border-top: 1px solid var(--line); }
+
 /* ---------- Compare ---------- */
 .compare { display: grid; gap: 16px; align-items: stretch; }
 @media (min-width: 900px) { .compare { grid-template-columns: 1fr auto 1fr; gap: 24px; } }

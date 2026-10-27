@@ -1,7 +1,15 @@
 // GET /api/status
-// Public, read-only snapshot of evacuation centers and active announcements.
+// Public, read-only snapshot of evacuation centers, active announcements,
+// barangay policies, and vulnerable-group counts (numbers only, no names).
 import { isConfigured, readTabs } from "../lib/sheets.js";
-import { DEMO_TABS, normalizeAnnouncements, normalizeCenters, summarize } from "../lib/data.js";
+import {
+  DEMO_TABS,
+  normalizeAnnouncements,
+  normalizeCenters,
+  normalizePolicies,
+  normalizeVulnerable,
+  summarize,
+} from "../lib/data.js";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -11,7 +19,9 @@ export default async function handler(req, res) {
 
   try {
     const live = isConfigured();
-    const tabs = live ? await readTabs(["Centers", "Announcements"]) : DEMO_TABS;
+    const tabs = live
+      ? await readTabs(["Centers", "Announcements", "Policies", "VulnerableSummary"])
+      : DEMO_TABS;
     const centers = normalizeCenters(tabs.Centers);
 
     // Cache at Vercel's edge for 30s so a traffic spike during a typhoon
@@ -23,6 +33,8 @@ export default async function handler(req, res) {
       summary: summarize(centers),
       centers,
       announcements: normalizeAnnouncements(tabs.Announcements),
+      policies: normalizePolicies(tabs.Policies || []),
+      vulnerable: normalizeVulnerable(tabs.VulnerableSummary || []),
     });
   } catch (err) {
     console.error("[status]", err);
